@@ -28,6 +28,38 @@ dependencies {
 }
 ```
 ## Useing
+
+```java
+ @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        try {
+
+            if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+                CropImage.ActivityResult result = CropImage.getActivityResult(data);
+
+                if (resultCode == RESULT_OK) {
+                    Uri resulturi = CropImage.getActivityResult(data).getUri();
+                    File file = new File(resulturi.getPath());
+                    //resultUr = result.getUri();
+                    String image = resulturi.getPath();
+                    Log.d("image__", image);
+                    uploadDocument(file);
+
+                    //if you want show image before uploading then use
+//                    Glide.with(MainActivity.this).load(file)
+//                            .placeholder(R.drawable.uploadimg)
+//                            .error(R.drawable.uploadimg)
+//                            .into(img_upload);
+                }
+            }
+
+        } catch (Exception e) {
+        }
+    }
+```
+
 ```java
 Define variable
 
