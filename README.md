@@ -27,7 +27,6 @@ dependencies {
     implementation 'com.github.premsingh8171:upload_document_lib:1.0'
 }
 ```
-## Useing
 
 ```java
  @Override
