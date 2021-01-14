@@ -33,7 +33,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation project(path: ':upload_img_onserver')
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -51,5 +50,6 @@ dependencies {
     implementation 'org.apache.httpcomponents:httpclient-android:4.3.5'
     //end require library
     implementation 'com.github.premsingh8171:spots-progress-dialog:1.0'
+    implementation 'com.github.premsingh8171:upload_document_lib:1.0'
 
 }
