@@ -1,0 +1,3 @@
+include ':upload_img_onserver'
+include ':app'
+rootProject.name = "UploadImageDemo"
