@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.VolleyError;
 import com.bumptech.glide.Glide;
+import com.premsinghdaksha.spots_progress_dialog.SpotsProgressDialog;
 import com.premsinghdaksha.upload_img_onserver.uploadImage.UploadDocument;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
@@ -26,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
     public Context mContext;
     public String url_;
     public HashMap<String, String> map;
-    public String file_key;
+    public String file_key = "file";//iyour image key
+    SpotsProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +79,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void uploadDocument(File file) {
+        dialog = (SpotsProgressDialog) new SpotsProgressDialog.Builder()
+                .setContext(MainActivity.this)
+                .setMessage("Please wait, processing...")
+                .setCancelable(false)
+                .build();
+        dialog.show();
         map = new HashMap<>();
         map.put("KEY", "VALUE");
         map.put("KEY", "VALUE");
@@ -87,14 +95,16 @@ public class MainActivity extends AppCompatActivity {
 
         // file_key your image upload key variable like file, image etc.
 
-        uploadDocument = new UploadDocument(MainActivity.this, "file", file, url, map, new UploadDocument.OnResponce() {
+        uploadDocument = new UploadDocument(MainActivity.this, file_key, file, url, map, new UploadDocument.OnResponce() {
             @Override
             public void onSuccess(String responce) {
+                dialog.dismiss();
                 Toast.makeText(MainActivity.this, "" + responce, Toast.LENGTH_LONG);
             }
 
             @Override
             public void onError(VolleyError error) {
+                dialog.dismiss();
                 Toast.makeText(MainActivity.this, "error", Toast.LENGTH_LONG);
 
             }

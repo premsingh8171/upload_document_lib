@@ -50,4 +50,6 @@ dependencies {
     }
     implementation 'org.apache.httpcomponents:httpclient-android:4.3.5'
     //end require library
+    implementation 'com.github.premsingh8171:spots-progress-dialog:1.0'
+
 }

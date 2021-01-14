@@ -10,7 +10,7 @@
         android:id="@+id/img_upload"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:background="@drawable/uploadimg"
+        android:src="@drawable/uploadimg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
