@@ -24,7 +24,7 @@ repositories {
 ```
 dependencies {
     
-    implementation 'com.github.premsingh8171:spots-progress-dialog:1.0'
+    implementation 'com.github.premsingh8171:upload_document_lib:1.0'
 }
 ```
 ## Useing
