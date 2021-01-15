@@ -12,10 +12,14 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
 import com.premsinghdaksha.spots_progress_dialog.SpotsProgressDialog;
 import com.premsinghdaksha.upload_img_onserver.uploadImage.UploadDocument;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.util.HashMap;
@@ -88,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         map.put("mobile_no", "9267909750");
         //map.put("KEY", "VALUE");
         //  map.put("KEY", "VALUE");
-        //ETC
+        //ETC.
 
         String url = "http://institutepartner.com/public/api/upload";
         file_key = "image";
@@ -100,6 +104,22 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(String responce) {
                 dialog.dismiss();
                 Log.d("responce__r", responce);
+                try {
+                    JSONObject obj = new JSONObject(responce);
+                    JSONObject dataObj = obj.optJSONObject("data");
+                    JSONObject resultsObj = dataObj.optJSONObject("results");
+                    String message = obj.optString("message");
+                    String image = resultsObj.optString("image");
+                    Toast.makeText(MainActivity.this, "" + message, Toast.LENGTH_LONG);
+
+                    Glide.with(MainActivity.this).load(image)
+                            .placeholder(R.drawable.uploadimg)
+                            .error(R.drawable.uploadimg)
+                            .into(img_upload);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
