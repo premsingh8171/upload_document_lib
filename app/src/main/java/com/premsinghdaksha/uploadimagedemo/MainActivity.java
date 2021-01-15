@@ -12,7 +12,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.VolleyError;
-import com.bumptech.glide.Glide;
 import com.premsinghdaksha.spots_progress_dialog.SpotsProgressDialog;
 import com.premsinghdaksha.upload_img_onserver.uploadImage.UploadDocument;
 import com.theartofdev.edmodo.cropper.CropImage;
@@ -67,10 +66,10 @@ public class MainActivity extends AppCompatActivity {
                     uploadDocument(file);
 
                     //if you want show image before uploading then use
-                    Glide.with(MainActivity.this).load(file)
-                            .placeholder(R.drawable.uploadimg)
-                            .error(R.drawable.uploadimg)
-                            .into(img_upload);
+//                    Glide.with(MainActivity.this).load(file)
+//                            .placeholder(R.drawable.uploadimg)
+//                            .error(R.drawable.uploadimg)
+//                            .into(img_upload);
                 }
             }
 
@@ -85,13 +84,14 @@ public class MainActivity extends AppCompatActivity {
                 .setCancelable(false)
                 .build();
         dialog.show();
-        map = new HashMap<>();
-        map.put("KEY", "VALUE");
-        map.put("KEY", "VALUE");
-        map.put("KEY", "VALUE");
+        HashMap<String, String> map = new HashMap<>();
+        map.put("mobile_no", "9267909750");
+        //map.put("KEY", "VALUE");
+        //  map.put("KEY", "VALUE");
         //ETC
 
-        String url = "YOUR URL";
+        String url = "http://institutepartner.com/public/api/upload";
+        file_key = "image";
 
         // file_key your image upload key variable like file, image etc.
 
@@ -99,13 +99,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(String responce) {
                 dialog.dismiss();
-                Toast.makeText(MainActivity.this, "" + responce, Toast.LENGTH_LONG);
+                Log.d("responce__r", responce);
             }
 
             @Override
             public void onError(VolleyError error) {
                 dialog.dismiss();
-                Toast.makeText(MainActivity.this, "error", Toast.LENGTH_LONG);
+                Log.d("error_", String.valueOf(error));
 
             }
         });

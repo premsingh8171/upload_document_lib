@@ -1,6 +1,7 @@
 package com.premsinghdaksha.upload_img_onserver.uploadImage;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
@@ -25,13 +26,14 @@ public class UploadDocument {
         this.file = file;
         this.url = url;
         this.file_key = file_key;
-        this.map = new HashMap<>();
+        this.map = map;
         this.responce = responce;
         uploadDocument();
 
     }
 
     private void uploadDocument() {
+       // Log.d("map___", String.valueOf(map));
         MultipartRequest req = null;
         try {
             req = new MultipartRequest(url, new Response.ErrorListener() {
