@@ -32,16 +32,26 @@ public class MainActivity extends AppCompatActivity {
     public HashMap<String, String> map;
     public String file_key = "file";//iyour image key
     SpotsProgressDialog dialog;
+    static final int REQUEST_IMAGE_CAPTURE = 101;
+    ImageView pdf;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         img_upload = findViewById(R.id.img_upload);
+        pdf = findViewById(R.id.pdf);
         img_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectCoverImage();
+            }
+        });
+        pdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SelectPhotoMethod(v);
             }
         });
     }
@@ -49,6 +59,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void selectCoverImage() {
         CropImage.activity().setGuidelines(CropImageView.Guidelines.OFF).start(MainActivity.this);
+    }
+
+    public void SelectPhotoMethod(View view) {
+        Intent intent = new Intent();
+        intent.setType("application/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select document"), REQUEST_IMAGE_CAPTURE);
+
     }
 
 
@@ -79,6 +97,21 @@ public class MainActivity extends AppCompatActivity {
 
         } catch (Exception e) {
         }
+
+//        if (REQUEST_IMAGE_CAPTURE == 101) {
+//            try {
+//                Uri uri = data.getData();
+//                File file = FileUtil.from(MainActivity.this, uri);
+//                Log.d("file__", "File...:::: uti - " + file.getPath() + " file -" + file + " : " + file.exists());
+//
+//                uploadDocument(file);
+//
+//            } catch (Exception ex) {
+//                ex.printStackTrace();
+//            }
+//        }
+
+
     }
 
     private void uploadDocument(File file) {
